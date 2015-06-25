@@ -13,6 +13,12 @@ object iScala extends js.JSApp {
     editor.setTheme("ace/theme/monokai")
     editor.getSession().setMode("ace/mode/scala")
 
+    val initialValue = global.localStorage.getItem("iscala_notepad")
+    if(initialValue != null){
+      val str = initialValue.toString
+      editor.setValue(str, str.length)
+    }
+
     editor.commands.addCommand(js.Dynamic.literal(
       name = "Run Scala code",
       bindKey = "Command-Enter",
@@ -28,6 +34,11 @@ object iScala extends js.JSApp {
       }
     ).asInstanceOf[EditorCommand])
 
+    editor.session.on("change", (e: Any) => {
+      global.localStorage.setItem("iscala_notepad", editor.getValue())
+    })
+
+    editor.focus()
     println("Hello iScala!!")
   }
 
