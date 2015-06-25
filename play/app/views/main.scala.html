@@ -1,0 +1,17 @@
+@(title: String)(content: Html)
+@import play.api.Play
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>@title</title>
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("src-min/ace.js"))'></script>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+  </head>
+  <body>
+    @content
+  </body>
+</html>
